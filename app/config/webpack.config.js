@@ -53,9 +53,6 @@ module.exports = process.env.NODE_ENV ?
     module: envToggle(
       // DEVELOPMENT
       meta.module({
-        js: {
-          prepend: ['react-hot']
-        }
       }),
       // PRODUCTION
       meta.module({})
