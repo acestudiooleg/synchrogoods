@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.marketsoup.driverapp" version="1.1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Starlight Driver</name>
+    <name>Synchro Goods</name>
     <description>
-        Driver application for Starlight.
+        Live list of goods
     </description>
-    <author email="dan.weber@starlightprooperations.com" href="http://cordova.io">
-        Marketsoup, Inc.
-    </author>
+    <author email="acestudiooleg@gmail.com" href="http://cordova.io">
+       Oleg Sudavnyi
     <content src="index.html" />
     <access origin="*" />
     <icon density="mdpi" height="57" platform="android" src="res/android/red_truck.png" width="57" />
