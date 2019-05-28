@@ -20,7 +20,7 @@ module.exports = process.env.NODE_ENV ?
         prepend: [
           `webpack-dev-server/client?http://${
             process.env.NODE_ENV === 'development:mobile' ?
-              process.env.REMOTE_HOST || '10.0.2.2' :
+              process.env.REMOTE_HOST || '192.168.0.106' :
               devServer.hostname
           }:${devServer.port}`,
           'webpack/hot/only-dev-server'

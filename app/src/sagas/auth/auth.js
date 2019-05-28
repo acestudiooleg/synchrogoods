@@ -1,6 +1,5 @@
 import R from 'ramda';
 import {signIn, verifyToken} from 'src/libs/auth0/auth0';
-import trash from 'src/sagas/trash/trash';
 import {take, select, call, put} from 'redux-saga/effects';
 import {setItem, getItem, clear, valueOf}
   from 'src/libs/localstorage/localstorage';
@@ -44,11 +43,6 @@ function * store(method, authObject) {
   }
 }
 
-export const getDriver = username =>
-  trash(
-    'view-driver-by-username',
-    {path: {username}}
-  );
 
 export function * authorize(authObject) {
   if (authObject) {

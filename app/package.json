@@ -171,6 +171,7 @@
     "auth0-js": "^8.12.3",
     "bluebird": "^3.5.5",
     "classnames": "^2.2.6",
+    "cordova-android": "^8.0.0",
     "js-yaml": "^3.13.1",
     "jwt-decode": "^2.2.0",
     "load-script": "^1.0.0",
@@ -232,6 +233,15 @@
     "superagent-promise": "^1.1.0",
     "variable-diff": "^1.1.0",
     "webpack": "^1.15.0",
-    "webpack-dev-server": "^1.16.5"
+    "webpack-dev-server": "^1.16.5",
+    "cordova-plugin-whitelist": "1"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {}
+    },
+    "platforms": [
+      "android"
+    ]
   }
 }

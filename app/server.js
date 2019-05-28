@@ -14,7 +14,7 @@ const {devServer} = require('./package.json');
 
 const [,, target = 'emulator'] = process.argv;
 
-const host = process.env.REMOTE_HOST || '10.0.2.2';
+const host = process.env.REMOTE_HOST || '192.168.0.106';
 
 const src = (hostname = devServer.hostname) => url.format(R.merge(
   {protocol: 'http:'},
@@ -65,6 +65,7 @@ process.on('SIGTERM', terminate);
         contentBase: './platforms/android/assets/www',
         publicPath: '/',
         hot: true,
+        disableHostCheck: true,
         historyApiFallback: true
       }).listen(devServer.port, devServer.hostname);
     } catch (err) {

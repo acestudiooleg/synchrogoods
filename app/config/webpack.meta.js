@@ -10,11 +10,10 @@ const extendableListRule = R.curry((rule, enhancers) => {
   }
   /* eslint babel/new-cap: 0 */
   /* eslint new-cap: 0 */
-  return S.B(
-    R.concat(enhancers.prepend || []),
-    R.concat(R.__, enhancers.append || []),
-    rule
-  );
+  return S.compose
+    (R.concat(enhancers.prepend || []))
+    (R.concat(R.__, enhancers.append || []))
+    (rule);
 });
 
 const projDir = dirName => path.resolve(path.join(__dirname, '..', dirName));
