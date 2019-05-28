@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rm -rf www && react-scripts build && mv build www",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "android": "cordova run android"
@@ -22,9 +22,12 @@
     "connected-react-router": "^6.4.0",
     "cordova-android": "^8.0.0",
     "cordova-browser": "^6.0.0",
+    "history": "^4.9.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
     "redux-devtools": "^3.5.0",
