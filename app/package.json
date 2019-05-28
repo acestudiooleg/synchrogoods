@@ -17,9 +17,6 @@
     "test:debug": "cross-env NODE_PATH=. inspect node_modules/ava/profile.js",
     "test:s": "cross-env NODE_PATH=. ava -v -w",
     "test": "npm run test:unit",
-    "test:func": "calabash-android run $(npm run -s build:dev:filename)",
-    "test:func:dev": "calabash-android run platforms/android/build/outputs/apk/android-debug.apk",
-    "test:func:dev:console": "calabash-android console platforms/android/build/outputs/apk/android-debug.apk",
     "test:unit": "cross-env NODE_PATH=. ava -v",
     "test:unit:watch": "npm run test:unit -- -w",
     "cov": "cross-env CI=true cross-env NODE_ENV=test NODE_PATH=. nyc ava",
@@ -180,6 +177,7 @@
     "local-web-server": "^1.2.8",
     "moment": "^2.24.0",
     "node-uuid": "^1.4.8",
+    "ramda": "^0.26.1",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-redux": "^4.4.10",
@@ -190,7 +188,7 @@
     "sanctuary": "^2.0.0",
     "semver": "https://registry.npmjs.org/semver/-/semver-5.3.0.tgz",
     "sha1": "https://registry.npmjs.org/sha1/-/sha1-1.1.1.tgz",
-    "storybook": "^1.0.0"
+    "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
@@ -208,6 +206,7 @@
     "commitizen": "^2.10.1",
     "cordova": "^6.5.0",
     "cross-env": "^2.0.1",
+    "storybook": "^1.0.0",
     "css-loader": "^0.23.1",
     "cz-conventional-changelog": "^1.2.0",
     "enzyme": "^2.9.1",
