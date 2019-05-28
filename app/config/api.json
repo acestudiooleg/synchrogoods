@@ -1,0 +1,13 @@
+{
+  "baseURL": "https://trash-api.dev.nyc.marketsoup.com/",
+  "timeout": 10000,
+  "swagger": "/docs/swagger.yaml",
+  "cloudinary" : {
+    "apiUrl": "https://api.cloudinary.com/",
+    "apiVersion": "v1_1",
+    "baseUrl": "https://res.cloudinary.com/",
+    "cloudName": "drjl74ggo",
+    "apiKey": "514516149227595",
+    "apiSecret" : "8uFwMdItOaS9nirYCXgxga9x3ok"
+  }
+}

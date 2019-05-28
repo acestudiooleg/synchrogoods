@@ -1,0 +1,104 @@
+title "Authentication Process"
+
+'use plantuml-viewer extension for atom to see this diagram
+
+actor Driver
+control Saga
+database Storage
+database API
+boundary Reducer
+database State
+entity React
+
+Driver -> Saga: open app
+activate Saga
+Saga -> Storage: get expires
+activate Storage
+Storage --> Saga
+deactivate Storage
+
+alt expired
+
+  Saga -> Storage: clear
+  Saga -> Reducer: UNAUTHORIZE
+  activate Reducer
+  Reducer -> State: authorized: false
+  deactivate Reducer
+  activate State
+  State -> React: render login page
+  deactivate State
+
+else
+
+  Saga -> Reducer: AUTHORIZE
+  activate Reducer
+  Reducer -> State: authorized: true
+  deactivate Reducer
+  activate State
+  State -> React: render app
+  deactivate State
+
+  React -> Saga: LOGOUT
+  Saga -> Storage: clear
+  Saga -> Reducer: UNAUTHORIZE
+  activate Reducer
+  Reducer -> State: authorized: false
+  deactivate Reducer
+  activate State
+  State -> React: render login page
+  deactivate State
+
+end
+
+loop endless
+
+  React -> Reducer: LOGIN
+  activate React
+  activate Reducer
+  Reducer -> State: auth data
+  deactivate Reducer
+
+  React -> Saga: LOGIN
+  Saga -> State: take auth data
+  activate State
+  State --> Saga
+  deactivate State
+
+  Saga -> API: test-auth
+  activate API
+  API --> Saga: session
+  deactivate API
+
+  alt success
+
+    Saga -> Reducer: AUTHORIZE
+    activate Reducer
+    Reducer -> State: authorized: true
+    deactivate Reducer
+    activate State
+    State -> React: render app
+    deactivate State
+
+    React -> Saga: LOGOUT
+    Saga -> Storage: clear
+    Saga -> Reducer: UNAUTHORIZE
+    activate Reducer
+    Reducer -> State: authorized: false
+    deactivate Reducer
+    activate State
+    State -> React: render login page
+    deactivate State
+
+  else err
+
+    Saga -> Reducer: ALERT_SHOW
+    activate Reducer
+    Reducer -> State: message
+    deactivate Reducer
+    activate State
+    State -> React: render login page
+    deactivate State
+
+  end
+
+end

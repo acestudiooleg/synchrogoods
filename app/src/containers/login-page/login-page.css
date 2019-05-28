@@ -1,0 +1,47 @@
+@import "../../styles/normalize.css";
+@import "../../styles/vars.css";
+
+.wrapper {
+  @mixin page 6rem, 2rem;
+}
+
+.header {
+  @mixin header 1/3;
+
+  >h1, >h2 {
+    @mixin font-big;
+    text-transform: uppercase;
+    font-weight: lighter;
+    line-height: 1.4rem;
+    letter-spacing: 1.5pt;
+
+    margin: 0;
+  }
+
+  >div[data-name="logo"] {
+    lost-row: 1/3 1.5rem;
+  }
+
+  >h1 {
+    lost-row: 2/3 0;
+  }
+
+  >h2 {
+    lost-row: 3/3;
+  }
+}
+
+.form {
+  @mixin form 2/3, 1rem, 2rem;
+}
+
+.footer {
+  lost-row: 3/3;
+  padding: 0 2rem;
+
+  text-align: center;
+
+  >a {
+    @mixin link;
+  }
+}

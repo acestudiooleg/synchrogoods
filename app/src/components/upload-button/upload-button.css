@@ -1,0 +1,44 @@
+@import "../../styles/normalize.css";
+@import "../../styles/vars.css";
+
+.fileBtn {
+  display: block;
+  text-align: center;
+  composes: button from "../button/button.css";
+
+  input {
+    display: none;
+  }
+}
+
+.thumbnail {
+  position: relative;
+  height: 16rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: transparent;
+  }
+
+  button {
+    position: absolute;
+    width: 3.7rem;
+
+    right: 1rem;
+    bottom: .7rem;
+
+    background-color: $color-orange-red;
+    color: white;
+    border: $border-thin-orange-red;
+  }
+}
+
+.errorMessage {
+  color: $color-orange-red;
+  text-align: right;
+  display: block;
+
+  @mixin font-small;
+}

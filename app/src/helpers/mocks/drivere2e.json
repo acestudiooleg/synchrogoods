@@ -1,0 +1,9 @@
+{
+  "id": "35",
+  "authUser": "drivere2e",
+  "accessToken": "230d47cfe6c0811ca8acb845aa12a7d344395849",
+  "refreshToken": "5e15ed96c547a00ab4a86f39b1f845d8fcb4d688",
+  "scope": "role:;user_id:;customer_id:;name:;tenant_id:2;",
+  "tokenType": "Bearer",
+  "expires": "2017-11-21 13:09:47"
+}

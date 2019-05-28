@@ -1,68 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# DRIVER APP
 
-## Available Scripts
+A repository for driver application.
 
-In the project directory, you can run:
+## Usage
 
-### `npm start`
+```bash
+# the way how we should commit (using commitizen)
+npm run commit
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# starts an already built project in the emulator
+npm run start
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+# starts a development ready version with hot code replacement in the emulator
+npm run start:dev
 
-### `npm test`
+# starts a web server on the www folder
+npm run start:web
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# starts a development ready version with hot code replacement for the browser
+npm run start:web:dev
 
-### `npm run build`
+# builds a production version of the project
+npm run build
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# builds a development version
+npm run build:dev
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+# builds a web version of the project
+npm run build:web
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# builds a development web version of the project
+npm run build:web:dev
 
-### `npm run eject`
+# start all the tests (only units now, but there will be all the tests soon)
+npm run test
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# start all the functional calabash tests
+npm run test:func
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# start all the unit tests
+npm run test:unit
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# start all the unit tests and watch for file changes
+npm run test:unit:watch
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# start tests with coverage reporter
+npm run cov
 
-## Learn More
+# check latest coverage report to be 100% code covered
+npm run cov:check
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# lint the code
+npm run lint
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# dev ops tool
+npm run validate
 
-### Code Splitting
+# run storybook
+npm run storybook
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+# create a new component
+npm run new:component hello-world
 
-### Analyzing the Bundle Size
+# add also mock file
+npm run new:component hello-world true
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Installation
 
-### Making a Progressive Web App
+For installation instructions see [INSTALLATION.md](INSTALLATION.md)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Contributing
 
-### Advanced Configuration
+For contributing instructions see [CONTRIBUTING.md](CONTRIBUTING.md)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Development Process
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+There is an article and a banch of video tutorials on this matter [in our Confluence](https://marketsoup.atlassian.net/wiki/display/PD/Driver+App+Development+Process).

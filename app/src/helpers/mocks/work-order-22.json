@@ -1,0 +1,86 @@
+{
+  "location1": {
+    "id": 2,
+    "name": "605 W 62nd Ave, Denver, CO 80216",
+    "type": "WAYPOINT",
+    "waypointType": "HOME_YARD",
+    "waypointName": "5280 Home Yard",
+    "location": {
+      "lon": -104.992133,
+      "lat": 39.810991
+    },
+    "createdBy": "dispatch3",
+    "createdDate": "2016-07-07T08:49:21.826Z",
+    "modifiedBy": null,
+    "modifiedDate": "2016-07-07T08:49:21.826Z"
+  },
+  "location2": {
+    "id": 2,
+    "name": "605 W 62nd Ave, Denver, CO 80216",
+    "type": "WAYPOINT",
+    "waypointType": "HOME_YARD",
+    "waypointName": "5280 Home Yard",
+    "location": {
+      "lon": -104.992133,
+      "lat": 39.810991
+    },
+    "createdBy": "dispatch3",
+    "createdDate": "2016-07-07T08:49:21.826Z",
+    "modifiedBy": null,
+    "modifiedDate": "2016-07-07T08:49:21.826Z"
+  },
+  "driver": {
+    "truck": {
+      "id": 163,
+      "name": "Alex's bicycle",
+      "type": "TRUCK",
+      "waypointType": null,
+      "waypointName": null,
+      "location": {
+        "lon": null,
+        "lat": null
+      },
+      "createdBy": "dispatch3",
+      "createdDate": "2016-08-17T21:00:53.269Z",
+      "modifiedBy": null,
+      "modifiedDate": "2016-08-17T21:00:53.269Z"
+    },
+    "id": 26,
+    "name": "Alex",
+    "username": "driver3",
+    "photo": null,
+    "createdBy": "dispatch3",
+    "createdDate": "2016-08-17T21:00:53.275Z",
+    "modifiedBy": "dispatch3",
+    "modifiedDate": "2016-08-17T21:05:35.830Z",
+    "deleted": 0
+  },
+  "id": 22,
+  "status": "CANCELED",
+  "action": "LIVE LOAD",
+  "size": "20",
+  "material": "Concrete Recycle",
+  "scheduledDate": "2016-08-15T00:00:00.000Z",
+  "scheduledStart": "2016-08-15T00:02:00.000Z",
+  "scheduledEnd": "2016-08-15T00:10:00.000Z",
+  "poNumber": null,
+  "contactName": null,
+  "contactNumber": null,
+  "customerName": null,
+  "instructions": null,
+  "alleyPlacement": 0,
+  "earlyPickUp": 0,
+  "okToRoll": 0,
+  "negotiatedFill": 0,
+  "profileNumber": null,
+  "customerProvidedProfile": 0,
+  "priority": 0,
+  "step": "START_WORK_ORDER",
+  "canId": null,
+  "createdBy": "dispatch3",
+  "createdDate": "2016-08-15T13:40:06.175Z",
+  "modifiedBy": "driver3",
+  "modifiedDate": "2016-08-22T15:23:09.581Z",
+  "deleted": 0,
+  "index": 0
+}

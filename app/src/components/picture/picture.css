@@ -1,0 +1,43 @@
+@import "../../styles/normalize.css";
+@import "../../styles/vars.css";
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  
+
+  &.fullscreen {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(0,0,0,.6);
+
+    .imgError {
+      &.picture{
+
+        margin-top: -1.5rem;
+        height: calc(100% + 1.5rem);
+      }
+
+      &::before { 
+        position: absolute;
+        content: "Picture could not be loaded successfully. Please try again later."; /* stylelint-disable-line */
+        white-space: pre-line;
+        font-weight: bold;
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+        padding: 5rem 2rem 2rem 2rem;
+      }
+    }
+  }
+}
+
+.picture {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}

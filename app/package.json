@@ -1,63 +1,298 @@
 {
-  "name": "org.apache.cordova.synchrogoods",
-  "displayName": "HelloCordova",
-  "version": "1.0.0",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
-  "main": "index.js",
+  "name": "driverapp",
+  "private": true,
+  "version": "1.1.6",
+  "description": "",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "rm -rf www && react-scripts build && mv build www",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "android": "cordova run android"
+    "start": "cordova run",
+    "start:dev": "cross-env NODE_ENV=development:mobile node ./server.js",
+    "start:web": "ws",
+    "start:web:dev": "cross-env NODE_ENV=development node ./server.js",
+    "build": "cross-env NODE_ENV=production:mobile npm run build:web && cordova build",
+    "build:dev": "cross-env NODE_ENV=production:mobile npm run build:web:dev && cordova build",
+    "build:dev:filename": "npm run build:dev | tail -n1 | awk '{ print $1, $2 }'",
+    "build:upload": "./bin/upload-build.js $(npm run -s build:dev:filename)",
+    "build:web": "webpack -p --config config/webpack.config.js",
+    "build:web:dev": "webpack --config config/webpack.config.js",
+    "test:debug": "cross-env NODE_PATH=. inspect node_modules/ava/profile.js",
+    "test:s": "cross-env NODE_PATH=. ava -v -w",
+    "test": "npm run test:unit",
+    "test:func": "calabash-android run $(npm run -s build:dev:filename)",
+    "test:func:dev": "calabash-android run platforms/android/build/outputs/apk/android-debug.apk",
+    "test:func:dev:console": "calabash-android console platforms/android/build/outputs/apk/android-debug.apk",
+    "test:unit": "cross-env NODE_PATH=. ava -v",
+    "test:unit:watch": "npm run test:unit -- -w",
+    "cov": "cross-env CI=true cross-env NODE_ENV=test NODE_PATH=. nyc ava",
+    "cov:check": "nyc check-coverage --lines 100 --functions 100 --branches 100",
+    "lcov": "nyc report --reporter=lcov",
+    "lcov:open": "nyc report --reporter=lcov; sensible-browser ./coverage/lcov-report/index.html",
+    "cov:report": "./node_modules/.bin/nyc report --reporter=lcov && open coverage/lcov-report/index.html",
+    "lint": "xo && stylelint \"src/**/*.css\"",
+    "lint:fix": "xo --fix",
+    "validate": "npm run lint && npm run cov && npm run cov:check",
+    "commit": "npm run validate && git cz",
+    "storybook": "start-storybook -p 9001 -c config",
+    "new:component": "./bin/component-generator/component-generator.js"
   },
-  "keywords": [
-    "ecosystem:cordova"
-  ],
-  "author": "Apache Cordova Team",
-  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:marketsoup/driverapp.git"
+  },
+  "author": "Marketsoup, Inc.",
+  "license": "UNLICENSED",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devServer": {
+    "hostname": "0.0.0.0",
+    "port": 9002
+  },
+  "local-web-server": {
+    "port": 8080,
+    "directory": "www",
+    "spa": "index.html",
+    "compress": true
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-0",
+      "stage-2"
+    ],
+    "plugins": [
+      "transform-decorators-legacy"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "istanbul"
+        ]
+      },
+      "development:mobile": {
+        "sourceMaps": "inline"
+      },
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "node_modules",
+      "src/**/*.spec.js",
+      "src/**/*.mock.js",
+      "src/**/*.story.js"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
+  "ava": {
+    "concurrency": 2,
+    "babel": "inherit",
+    "files": [
+      "test/unit/**/*.js",
+      "src/**/*.spec.js"
+    ],
+    "source": [
+      "src/**/*.js",
+      "!src/**/*.story.js"
+    ],
+    "require": [
+      "./test/helpers/null-compiler.js",
+      "./test/helpers/browser-env.js",
+      "babel-register"
+    ]
+  },
+  "xo": {
+    "parser": "babel-eslint",
+    "envs": [
+      "browser",
+      "node",
+      "mocha",
+      "es6"
+    ],
+    "esnext": true,
+    "extends": [
+      "xo-react"
+    ],
+    "plugins": [
+      "babel"
+    ],
+    "space": true,
+    "rules": {
+      "react/jsx-no-bind": [
+        1,
+        {
+          "ignoreRefs": true
+        }
+      ],
+      "linebreak-style": 0,
+      "no-useless-escape": 0,
+      "spaced-comment": 0,
+      "import/no-unresolved": 0,
+      "import/extensions": 0,
+      "import/prefer-default-export": 0,
+      "import/no-webpack-loader-syntax": 0,
+      "import/no-unassigned-import": 0,
+      "import/no-extraneous-dependencies": 0,
+      "react/require-optimization": 0,
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js"
+          ]
+        }
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "max-len": [
+        "error",
+        100
+      ],
+      "max-params": [
+        "error",
+        5
+      ]
+    },
+    "ignores": [
+      "www/**/*",
+      "platforms/**/*",
+      "plugins/**/*",
+      "hooks/**/*"
+    ]
+  },
+  "stylelint": {
+    "rules": {
+      "block-no-empty": null,
+      "color-no-invalid-hex": true,
+      "comment-empty-line-before": [
+        "always",
+        {
+          "ignore": [
+            "stylelint-commands",
+            "between-comments"
+          ]
+        }
+      ],
+      "max-line-length": 80,
+      "declaration-colon-space-after": "always",
+      "indentation": 2,
+      "max-empty-lines": 1,
+      "rule-nested-empty-line-before": [
+        "always",
+        {
+          "except": [
+            "first-nested"
+          ],
+          "ignore": [
+            "after-comment"
+          ]
+        }
+      ],
+      "unit-whitelist": [
+        "pt",
+        "rem",
+        "%",
+        "deg",
+        "s",
+        "vh"
+      ]
+    }
+  },
   "dependencies": {
-    "@material-ui/core": "^4.0.1",
-    "@material-ui/icons": "^4.0.1",
-    "connected-react-router": "^6.4.0",
-    "cordova-android": "^8.0.0",
-    "cordova-browser": "^6.0.0",
-    "history": "^4.9.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-redux": "^7.0.3",
-    "react-router": "^5.0.0",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.1",
-    "redux": "^4.0.1",
-    "redux-devtools": "^3.5.0",
-    "redux-saga": "^1.0.2"
+    "auth0-js": "^8.10.1",
+    "bluebird": "^3.4.1",
+    "classnames": "^2.2.5",
+    "cssrecipes-defaults": "^0.5.0",
+    "js-yaml": "^3.6.1",
+    "jwt-decode": "^2.1.0",
+    "leaflet": "^0.7.7",
+    "leaflet-plugins": "^2.0.0",
+    "load-script": "^1.0.0",
+    "local-web-server": "^1.2.6",
+    "lost": "^7.1.0",
+    "moment": "^2.15.0",
+    "node-uuid": "^1.4.7",
+    "normalize.css": "^4.2.0",
+    "ramda": "^0.22.1",
+    "react": "^15.3.1",
+    "react-addons-pure-render-mixin": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0",
+    "redux-form": "~6.0.5",
+    "redux-saga": "^0.11.1",
+    "sanctuary": "^0.11.1",
+    "semver": "https://registry.npmjs.org/semver/-/semver-5.3.0.tgz",
+    "sha1": "https://registry.npmjs.org/sha1/-/sha1-1.1.1.tgz"
   },
   "devDependencies": {
-    "cordova-plugin-whitelist": "^1.3.3"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-whitelist": {}
-    },
-    "platforms": [
-      "android",
-      "browser"
-    ]
+    "@kadira/storybook": "^2.3.0",
+    "autoprefixer": "^6.4.0",
+    "ava": "^0.16.0",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-istanbul": "^2.0.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-stage-2": "^6.13.0",
+    "babel-register": "^6.11.6",
+    "commitizen": "^2.8.6",
+    "cordova": "^6.3.1",
+    "cross-env": "^2.0.0",
+    "css-loader": "^0.23.1",
+    "cz-conventional-changelog": "^1.2.0",
+    "enzyme": "^2.4.1",
+    "eslint": "^3.3.1",
+    "eslint-config-xo": "^0.15.3",
+    "eslint-config-xo-react": "^0.9.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-react": "^6.1.2",
+    "express": "^4.14.0",
+    "file-loader": "^0.9.0",
+    "find-open-port": "^1.0.2",
+    "ghooks": "^1.3.2",
+    "inspect-process": "^0.4.2",
+    "js-beautify": "^1.6.4",
+    "jsdom": "^9.4.2",
+    "json-loader": "^0.5.4",
+    "jsonwebtoken": "^7.2.1",
+    "lodash": "^4.15.0",
+    "node-localstorage": "^1.3.0",
+    "nyc": "^8.1.0",
+    "postcss-calc": "^5.3.1",
+    "postcss-color-function": "^2.0.1",
+    "postcss-import": "^8.1.2",
+    "postcss-mixins": "^5.0.1",
+    "postcss-nested": "^1.0.0",
+    "postcss-simple-vars": "^3.0.0",
+    "proxyquire": "^1.7.10",
+    "react-addons-test-utils": "^15.3.1",
+    "react-hot-loader": "^1.3.0",
+    "redux-devtools": "^3.3.1",
+    "replace": "^0.3.0",
+    "sinon": "^2.0.0-pre.2",
+    "stylelint": "^7.2.0",
+    "superagent": "^2.2.0",
+    "superagent-promise": "^1.1.0",
+    "variable-diff": "^1.1.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.0",
+    "xml2js": "https://registry.npmjs.org/xml2js/-/xml2js-0.4.17.tgz",
+    "xo": "^0.17.0"
   }
 }
