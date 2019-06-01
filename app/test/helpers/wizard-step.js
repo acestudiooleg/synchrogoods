@@ -1,7 +1,7 @@
 import {find} from 'test/helpers';
 import {store} from 'test/helpers/redux';
 import constants from 'src/helpers/mocks/constants.json';
-import reducer from 'src/libs/reredux/reducer';
+import reducer from 'src/libs/reducer/reducer';
 import {combineReducers} from 'redux';
 import combined, {reducers} from 'src/reducers';
 

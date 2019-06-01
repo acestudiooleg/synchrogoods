@@ -1,5 +1,5 @@
 import R from 'ramda';
-import reducer from 'src/libs/reredux/reducer';
+import reducer from 'src/libs/reducer/reducer';
 
 export const initialState = {
   history: {},

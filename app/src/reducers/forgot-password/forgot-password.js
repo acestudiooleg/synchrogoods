@@ -1,4 +1,4 @@
-import reducer from 'src/libs/reredux/reducer';
+import reducer from 'src/libs/reducer/reducer';
 
 export const initialState = {
   sent: false,
