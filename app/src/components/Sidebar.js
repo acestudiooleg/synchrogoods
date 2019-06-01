@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { withStyles } from '@material-ui/styles';
 
-import CategoriesList from '../categories-list/categories-list';
+import CategoriesList from './CategoriesList';
 
 const Sidebar = props => {
   const {

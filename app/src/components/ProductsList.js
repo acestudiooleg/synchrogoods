@@ -1,6 +1,6 @@
 import React from 'react';
 import List from '@material-ui/core/List';
-import ProductListItem from '../products-list-item/products-list-item';
+import ProductListItem from './ProductsListItem';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 

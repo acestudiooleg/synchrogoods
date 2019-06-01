@@ -4,7 +4,7 @@ import React, { PureComponent, Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-import Loader from '../../components/loader';
+import Loader from '../components/loader';
 
 const mapState = (state, props) => ({
   loaded: state.page[props.name],

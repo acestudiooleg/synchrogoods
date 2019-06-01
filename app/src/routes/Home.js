@@ -7,9 +7,9 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/styles';
 
-import ProductsList from '../../components/products-list/products-list';
-import Sidebar from '../../components/sidebar/sidebar';
-import Toolbar from '../../components/toolbar/toolbar';
+import ProductsList from '../containers/ProductsList';
+import Sidebar from '../components/Sidebar';
+import Toolbar from '../components/Toolbar';
 
 class Home extends PureComponent {
   static propTypes = {
@@ -22,7 +22,6 @@ class Home extends PureComponent {
     category: {
       title: 'ATB',
     },
-    products: [{ id: 1, title: 'hello', isDone: false }],
   };
 
   constructor(props) {
@@ -33,12 +32,12 @@ class Home extends PureComponent {
     };
   }
   render() {
-    const { classes, products, category } = this.props;
+    const { classes, category } = this.props;
     return (
       <div>
         <Toolbar category={category} onOpenButtonClick={this.openSideBar} />
         <div className={classes.root}>
-          <ProductsList products={products} onProductClick={this.openModal} />
+          <ProductsList onProductClick={this.openModal} />
         </div>
         <Sidebar
           isSideBarOpen={this.state.isSideBarOpen}

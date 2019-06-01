@@ -1,14 +1,11 @@
 import R from 'ramda';
 import reducer from 'src/libs/reducer/reducer';
+import { types } from '../actions/categories';
 
 export const initialState = {
-  history: {},
-  match: {},
-  location: {}
+  categories: [],
 };
 
 export default reducer(initialState, [
-
-  ['driverapp/ROUTER', R.prop('router')]
-
+  [types.CATEGORIES_RECEIVE, R.prop('categories')],
 ]);
