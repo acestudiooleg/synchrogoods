@@ -7,6 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import { ThemeProvider } from '@material-ui/styles';
 
+import Layout from './containers/Layout';
 import theme from './theme';
 import Router from './router';
 import reducers from './reducers';
@@ -25,7 +26,9 @@ export const App = () => (
   <ThemeProvider theme={theme}>
     <Provider store={store}>
       <HashRouter>
-        <Router />
+        <Layout>
+          <Router />
+        </Layout>
       </HashRouter>
     </Provider>
   </ThemeProvider>
