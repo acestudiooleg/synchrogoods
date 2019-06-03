@@ -1,12 +1,15 @@
 import { connect } from 'react-redux';
 import ProductsList from '../components/ProductsList';
-import { getProducts } from '../reducers/products';
+import productsAction from '../actions/products';
+import { getProductsList } from '../reducers/products';
 
 const mapStateToProps = state => ({
-  products: getProducts(state),
+  products: getProductsList(state),
 });
 
-const mapActionsToProps = () => ({});
+const mapActionsToProps = dispatch => ({
+  onProductCheck: product => dispatch(productsAction.updateItem(product)),
+});
 
 export default connect(
   mapStateToProps,

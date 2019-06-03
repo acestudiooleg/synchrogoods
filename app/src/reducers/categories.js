@@ -3,9 +3,9 @@ import reducer from 'src/libs/reducer/reducer';
 import { types } from '../actions/categories';
 
 export const initialState = {
-  categories: [],
+  list: [],
 };
 
-export default reducer(initialState, [
-  [types.CATEGORIES_RECEIVE, R.prop('categories')],
-]);
+export const getCategoriesList = R.prop(['categories', 'list']);
+
+export default reducer(initialState, [[types.CATEGORIES_RECEIVE, R.prop('categories')]]);

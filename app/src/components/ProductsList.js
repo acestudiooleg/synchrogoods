@@ -1,18 +1,14 @@
 import React from 'react';
+import R from 'ramda';
 import List from '@material-ui/core/List';
 import ProductListItem from './ProductsListItem';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 
 const ProductsList = props => {
-  const { classes, products, onProductClick, onProductChange } = props;
+  const { classes, products, onProductEdit, onProductCheck } = props;
   const items = products.map((p, i) => (
-    <ProductListItem
-      key={`listItem${i}`}
-      product={p}
-      onClick={onProductClick}
-      onChange={onProductChange}
-    />
+    <ProductListItem key={`listItem${i}`} product={p} onEdit={onProductEdit} onCheck={onProductCheck} />
   ));
 
   return (
@@ -25,14 +21,14 @@ const ProductsList = props => {
 ProductsList.propTypes = {
   classes: PropTypes.object.isRequired,
   products: PropTypes.array,
-  onProductClick: PropTypes.func,
-  onProductChange: PropTypes.func,
+  onProductEdit: PropTypes.func,
+  onProductCheck: PropTypes.func,
 };
 
 ProductsList.defaultProps = {
   products: [],
-  onProductClick: () => 1,
-  onProductChange: () => 1,
+  onProductEdit: R.identity,
+  onProductCheck: R.identity,
 };
 
 const styles = () => ({});
